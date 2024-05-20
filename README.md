@@ -15,7 +15,7 @@ Scrape data from Notino website about toothpastes and transform them.
   - implement logger, sending get and post requests
   - you can implement any other additional methods and features you consider useful
 
- `notino/sraper.py` - Scraper for Notino - raw data.
+ `notino/scraper.py` - Scraper for Notino - raw data.
   - Choose any language mutation of Notino and scrape toothpastes
   - https://www.notino.cz/zubni-pasty/ // https://www.notino.co.uk/toothpaste/ // https://www.notino.de/zahnpasten/ ... Notino is present in 28 countries
   - get info about products | mandatory: product name, brand, price, url, image 

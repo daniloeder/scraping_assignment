@@ -7,7 +7,7 @@ Scrape data from Notino website about toothpastes and transform them.
  - use Python
  - it is recommended to use file structure in this repository, but it is not mandatory. Up to your creativity.
  - you can use any libraries you want. Output should be csv file.
- - *clone this repository and after you are done with the task send link to your github or solution over to petr@forloop.ai*
+ - *clone this repository and after you are done with the task send link to your github or solution over to petr@forloop.ai and dominik@forloop.ai*
 
 ## File structure
 

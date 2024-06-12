@@ -1,6 +1,7 @@
 import logging
 import cloudscraper
 from abc import ABC
+import time
 
 class AbstractScraper(ABC):
     
@@ -13,12 +14,14 @@ class AbstractScraper(ABC):
 
     def send_get_request(self, url, **kwargs):
         try:
-            response = self.scraper.get(url, **kwargs)
-            response.raise_for_status()
-            if response.status_code != 200:
-                self.logger.error(f"GET request to {url} returned status code {response.status_code}")
-                return None
-            return response
+            for _ in range(5):
+                try:
+                    response = self.scraper.get(url, **kwargs)
+                    response.raise_for_status()
+                    if response.text:
+                        return response
+                except:
+                    time.sleep(1)
         except Exception as e:
             self.logger.error(f"Error sending GET request to {url}: {e}")
             return None

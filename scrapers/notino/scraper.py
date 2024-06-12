@@ -59,14 +59,16 @@ class NotinoScraper(AbstractScraper):
                         if price_after_sale_span:
                             price_after_sale = float(price_after_sale_span.text.replace(' ', '').replace(',', '.').replace('\xa0', ''))
                     
-                    products.append({
+                    product = {
                         'name': name,
                         'brand': brand,
                         'price': price,
                         'price_after_sale': price_after_sale,
                         'url': full_product_url,
                         'image': image_url
-                    })
+                    }
+                    if product not in products:
+                        products.append(product)
                 except Exception as e:
                     self.logger.error(f"Error processing product card: {e}")
 

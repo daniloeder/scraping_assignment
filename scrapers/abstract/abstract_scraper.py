@@ -15,7 +15,10 @@ class AbstractScraper(ABC):
         try:
             response = self.scraper.get(url, **kwargs)
             response.raise_for_status()
+            if response.status_code != 200:
+                self.logger.error(f"GET request to {url} returned status code {response.status_code}")
+                return None
             return response
-        except cloudscraper.exceptions.RequestException as e:
-            self.logger.error(f"GET request failed: {e}")
+        except Exception as e:
+            self.logger.error(f"Error sending GET request to {url}: {e}")
             return None

@@ -22,6 +22,11 @@ class NotinoScraper(AbstractScraper):
 
             if not last_page:
                 last_page = int(soup.find_all('span', {'data-testid': 'page-item'})[-1].text)
+                if last_page > 1:
+                    input_text = f"Scrap data to all {last_page} available pages? y/n ('y' to confirm, 'n' to scrap only first page): "
+                    user_input = input(input_text.lower())
+                    if user_input.lower() != 'y':
+                        last_page = 1
 
             product_cards = soup.select('div.sc-bSstmL.sc-bYpRZF.iJzxKb.llgfxg')
 

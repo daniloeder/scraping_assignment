@@ -19,12 +19,3 @@ class AbstractScraper(ABC):
         except cloudscraper.exceptions.RequestException as e:
             self.logger.error(f"GET request failed: {e}")
             return None
-
-    def send_post_request(self, url , **kwargs):
-        try:
-            response = self.scraper.post(url, **kwargs)
-            response.raise_for_status()
-            return response
-        except cloudscraper.exceptions.RequestException as e:
-            self.logger.error(f"POST request failed: {e}")
-            return None

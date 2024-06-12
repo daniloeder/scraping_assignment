@@ -20,13 +20,15 @@ class NotinoScraper(AbstractScraper):
 
             soup = BeautifulSoup(response_text, 'html.parser')
 
-            if not last_page:
+            if not last_page or last_page == 1:
                 last_page = int(soup.find_all('span', {'data-testid': 'page-item'})[-1].text)
                 if last_page > 1:
                     input_text = f"Scrap data to all {last_page} available pages? y/n ('y' to confirm, 'n' to scrap only first page): "
                     user_input = input(input_text.lower())
                     if user_input.lower() != 'y':
                         last_page = 1
+            else:
+                self.logger.info(f" Scraping page {page}/{last_page}")
 
             product_cards = soup.select('div.sc-bSstmL.sc-bYpRZF.iJzxKb.llgfxg')
 
@@ -70,7 +72,7 @@ class NotinoScraper(AbstractScraper):
 
             page += 1
 
-        self.logger.info(f"\nScraped {len(products)} products")
+        self.logger.info(f" Scraped {len(products)} products")
         return pd.DataFrame(products)
 
 def main(retailer: str, country: str) -> pd.DataFrame:

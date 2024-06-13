@@ -1,6 +1,11 @@
-import pandas as pd
-from bs4 import BeautifulSoup
-from scrapers.abstract.abstract_scraper import AbstractScraper
+try:
+    import pandas as pd
+    from bs4 import BeautifulSoup
+    import cloudscraper
+    from scrapers.abstract.abstract_scraper import AbstractScraper
+except:
+    print("In order to test the assignment, run:\npip install -r requirements.txt")
+    exit()
 
 class NotinoScraper(AbstractScraper):
 
